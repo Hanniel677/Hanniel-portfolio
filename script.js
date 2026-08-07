@@ -5,30 +5,18 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   // ==========================================
-  // CURSOR GLOW — follows mouse
+  // MAGIC MOUSE — dot + ring cursor with magnetic hover
   // ==========================================
-  const cursorGlow = document.getElementById('cursorGlow');
-  let mouseX = 0, mouseY = 0;
-  let glowX = 0, glowY = 0;
-
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    cursorGlow.classList.add('active');
-  });
-
-  document.addEventListener('mouseleave', () => {
-    cursorGlow.classList.remove('active');
-  });
-
-  function animateCursorGlow() {
-    glowX += (mouseX - glowX) * 0.08;
-    glowY += (mouseY - glowY) * 0.08;
-    cursorGlow.style.left = glowX + 'px';
-    cursorGlow.style.top = glowY + 'px';
-    requestAnimationFrame(animateCursorGlow);
+  if (window.innerWidth > 768 && typeof magicMouse === 'function') {
+    magicMouse({
+      "cursorOuter": "circle-basic",
+      "hoverEffect": "circle-move",
+      "hoverItemMove": true,
+      "defaultCursor": false,
+      "outerWidth": 30,
+      "outerHeight": 30
+    });
   }
-  animateCursorGlow();
 
 
   // ==========================================

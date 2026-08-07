@@ -115,23 +115,34 @@ img {
 }
 
 /* ============================================
-   CURSOR GLOW (follows mouse)
+   MAGIC MOUSE OVERRIDES — monochrome theme
    ============================================ */
-.cursor-glow {
-  position: fixed;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s ease-out, opacity var(--transition-base);
-  opacity: 0;
+#magicMouseCursor {
+  background: var(--white) !important;
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50% !important;
+  z-index: 9999 !important;
+  mix-blend-mode: difference;
 }
 
-.cursor-glow.active {
-  opacity: 1;
+#magicPointer {
+  border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
+  background: transparent !important;
+  z-index: 9998 !important;
+  mix-blend-mode: difference;
+}
+
+/* Hide on mobile / touch devices */
+@media (max-width: 768px) {
+  #magicMouseCursor,
+  #magicPointer {
+    display: none !important;
+  }
+
+  body {
+    cursor: auto !important;
+  }
 }
 
 /* ============================================
