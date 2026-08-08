@@ -115,32 +115,45 @@ img {
 }
 
 /* ============================================
-   MAGIC MOUSE OVERRIDES — monochrome theme
+   FLUID RIBBON TRAIL CURSOR & CLICK SPARKS
    ============================================ */
-#magicMouseCursor {
-  background: var(--white) !important;
-  width: 6px !important;
-  height: 6px !important;
-  border-radius: 50% !important;
-  z-index: 9999 !important;
-  mix-blend-mode: difference;
+.fluid-cursor-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99998;
+  mix-blend-mode: exclusion;
+  filter: url('#blob-goo');
+  -webkit-filter: url('#blob-goo');
 }
 
-#magicPointer {
-  border: 1.5px solid rgba(255, 255, 255, 0.5) !important;
-  background: transparent !important;
-  z-index: 9998 !important;
-  mix-blend-mode: difference;
+.click-spark-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99999;
 }
 
-/* Hide on mobile / touch devices */
+/* Hide default cursor on desktop */
+@media (min-width: 769px) {
+  body, a, button, .btn-primary, .btn-secondary, .skill-card, .project-card, .social-link, .contact-email {
+    cursor: none !important;
+  }
+}
+
+/* Hide custom elements on mobile */
 @media (max-width: 768px) {
-  #magicMouseCursor,
-  #magicPointer {
+  .magnetic-cursor,
+  .click-spark-canvas {
     display: none !important;
   }
-
-  body {
+  body, a, button {
     cursor: auto !important;
   }
 }
